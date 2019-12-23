@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Namma Metro</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+
+    <link rel="icon" href="AllImages/favicon.png" type="image/png" sizes="64x64">
+    <!-- FANCY BOX -->
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="/ContentUI/lib/jquery-1.10.1.min.js"></script>
+
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="/ContentUI/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="/ContentUI/source/jquery.fancybox.js?v=2.1.5"></script>
+    <link rel="stylesheet" type="text/css" href="/ContentUI/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+    <!-- Add Button helper (this is optional) -->
+    <link rel="stylesheet" type="text/css" href="/ContentUI/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+    <script type="text/javascript" src="/ContentUI/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+    <!-- Add Thumbnail helper (this is optional) -->
+    <link rel="stylesheet" type="text/css" href="/ContentUI/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+    <script type="text/javascript" src="source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+    <!-- Add Media helper (this is optional) -->
+    <script type="text/javascript" src="/ContentUI/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+            $('.fancybox').fancybox();
+
+			/*
+			 *  Different effects
+			 */
+
+            // Change title type, overlay closing speed
+            $(".fancybox-effects-a").fancybox({
+                helpers: {
+                    title: {
+                        type: 'outside'
+                    },
+                    overlay: {
+                        speedOut: 0
+                    }
+                }
+            });
+
+            // Disable opening and closing animations, change title type
+            $(".fancybox-effects-b").fancybox({
+                openEffect: 'none',
+                closeEffect: 'none',
+
+                helpers: {
+                    title: {
+                        type: 'over'
+                    }
+                }
+            });
+
+            // Set custom style, close if clicked, change title type and overlay color
+            $(".fancybox-effects-c").fancybox({
+                wrapCSS: 'fancybox-custom',
+                closeClick: true,
+
+                openEffect: 'none',
+
+                helpers: {
+                    title: {
+                        type: 'inside'
+                    },
+                    overlay: {
+                        css: {
+                            'background': 'rgba(238,238,238,0.85)'
+                        }
+                    }
+                }
+            });
+
+            // Remove padding, set opening and closing animations, close if clicked and disable overlay
+            $(".fancybox-effects-d").fancybox({
+                padding: 0,
+
+                openEffect: 'elastic',
+                openSpeed: 150,
+
+                closeEffect: 'elastic',
+                closeSpeed: 150,
+
+                closeClick: true,
+
+                helpers: {
+                    overlay: null
+                }
+            });
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+            $('.fancybox-buttons').fancybox({
+                openEffect: 'none',
+                closeEffect: 'none',
+
+                prevEffect: 'none',
+                nextEffect: 'none',
+
+                closeBtn: false,
+
+                helpers: {
+                    title: {
+                        type: 'inside'
+                    },
+                    buttons: {}
+                },
+
+                afterLoad: function () {
+                    this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+                }
+            });
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+            $('.fancybox-thumbs').fancybox({
+                prevEffect: 'none',
+                nextEffect: 'none',
+
+                closeBtn: false,
+                arrows: false,
+                nextClick: true,
+
+                helpers: {
+                    thumbs: {
+                        width: 50,
+                        height: 50
+                    }
+                }
+            });
+
+			/*
+			 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+			*/
+            $('.fancybox-media')
+                .attr('rel', 'media-gallery')
+                .fancybox({
+                    openEffect: 'none',
+                    closeEffect: 'none',
+                    prevEffect: 'none',
+                    nextEffect: 'none',
+
+                    arrows: false,
+                    helpers: {
+                        media: {},
+                        buttons: {}
+                    }
+                });
+
+			/*
+			 *  Open manually
+			 */
+
+            $("#fancybox-manual-a").click(function () {
+                $.fancybox.open('1_b.jpg');
+            });
+
+            $("#fancybox-manual-b").click(function () {
+                $.fancybox.open({
+                    href: 'iframe.html',
+                    type: 'iframe',
+                    padding: 5
+                });
+            });
+
+            $("#fancybox-manual-c").click(function () {
+                $.fancybox.open([
+                    {
+                        href: '1_b.jpg',
+                        title: 'My title'
+                    }, {
+                        href: '2_b.jpg',
+                        title: '2nd title'
+                    }, {
+                        href: '3_b.jpg'
+                    }
+                ], {
+                    helpers: {
+                        thumbs: {
+                            width: 75,
+                            height: 50
+                        }
+                    }
+                });
+            });
+
+
+        });
+    </script>
+    <style type="text/css">
+        .fancybox-custom .fancybox-skin {
+            box-shadow: 0 0 50px #222;
+        }
+    </style>
+
+
+    <link rel="stylesheet" href="/ContentUI/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/ContentUI/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ContentUI/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/ContentUI/css/style.css" media="screen" data-name="skins">
+    <link rel="stylesheet" href="/ContentUI/css/layout/wide.css" data-name="layout">
+    <link rel="stylesheet" href="/ContentUI/css/fractionslider.css" />
+    <link rel="stylesheet" href="/ContentUI/css/style-fraction.css" />
+    <link rel="stylesheet" href="/ContentUI/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/ContentUI/css/switcher.css" media="screen" />
+
+    <style>
+        /*.panel.panel-default .panel-title > a {
+            padding: 5px 0px 5px 0px !important;
+        }
+
+        .panel .panel-title > a:before {
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .panel-group .panel + .panel {
+            margin-top: 1px;
+        }
+
+        .panel.panel-default {
+            margin-bottom: 1px;
+        }
+
+        .panel-body {
+            height: 145px;
+            padding: 0px;
+            overflow: hidden;
+        }*/
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#incfont').click(function () {
+                curSize = parseInt($('body *').css('font-size')) + 2;
+                if (curSize <= 20)
+                    $('body *').css('font-size', curSize);
+            });
+            $('#decfont').click(function () {
+                curSize = parseInt($('body *').css('font-size')) - 2;
+                if (curSize >= 12)
+                    $('body *').css('font-size', curSize);
+            });
+        });
+    </script>
+</head>
+
+
+
+
+<body class="home">
+    <header id="header">
+        <div id="top-bar">
+            <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-8 top-info hidden-xs"> <span><i class="fa fa-phone"></i>Phone:
+                                    1800-425-12345</span> <span><i class="fa fa-envelope"></i>Email:
+                                    travelhelp@bmrc.co.in</span> </div>
+                            <div class="col-sm-4 top-info">
+                                <ul>
+
+                                    <li><a href="#" class="my-tweet"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#" class="my-facebook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" id="incfont" class="button buttonfont">A+</a></li>
+                                    <li><a href="#" id="decfont" class="button buttonfont">A-</a></li>
+                                    <li><a href="https://kannada.bmrc.co.in/" id="lang"
+                                            class="button buttonfont">Kannada</a></li>
+                                    <!--<li><a href="#" class="my-rss"><i class="fa fa-rss"></i></a></li>
+                                    <li><a href="#" class="my-google"><i class="fa fa-google-plus"></i></a></li>-->
+                                </ul>
+                                <!--<div id="fontlinks">
+                                    
+                                    
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="logo-bar">
+            <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="container-fluid">
+
+                        <div class="row">
+
+                            <!-- Logo / Mobile Menu -->
+
+                            <div class="col-lg-3 col-sm-3" style="padding:0px;">
+                                <div id="logo">
+
+                                    <h1><a href="http://english.bmrc.co.in"><img alt="logo"
+                                                src="/AllImages/Sliders/741337_LogoAndName.png" /></a></h1>
+                                </div>
+                            </div>
+
+
+                            <!-- Navigation
+                            ================================================== -->
+                            <div class="col-lg-9 col-sm-9">
+                                <div class="navbar navbar-default navbar-static-top" role="navigation">
+                                    <!--  <div class="container">-->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                            data-target=".navbar-collapse"> <span class="sr-only">Toggle
+                                                navigation</span> <span class="icon-bar"></span> <span
+                                                class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                    </div>
+                                    <div class="navbar-collapse collapse">
+
+                                        <ul class="nav navbar-nav">
+                                            <li class="active">
+                                                <a href="/">Home</a>
+                                            </li>
+                                            <li>
+
+                                                <a href="/AboutUs">About Us</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/ProjectProfile">Project Profile</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/TravelInfos">Travel Info</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/Ticket">Tickets</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/MetroStations">Metro Stations</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="http://tenderb.bmrc.co.in"> Tenders</a>
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/News/NewsSection">News</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/Finance/FinanceSection">Finance</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/gallaries/Gallary">Gallery</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/Career">Careers</a>
+
+
+                                            </li>
+                                            <li>
+
+                                                <a href="/ContactUs/Contact">Contact Us</a>
+
+
+                                            </li>
+                                        </ul>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+    <style type="text/css">
+        .fancybox-custom .fancybox-skin {
+            box-shadow: 0 0 50px #222;
+        }
+
+        #scrDiv {
+            position: relative;
+        }
+
+        .leftArrow,
+        .rightArrow {
+            height: 50px;
+            width: 30px;
+            background: #108f4c;
+            color: white;
+            position: absolute;
+            z-index: 999;
+            margin-top: -4px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 0px;
+            cursor: pointer;
+        }
+
+        .leftArrow {
+            left: 0;
+            top: 0;
+        }
+
+        .rightArrow {
+            right: 0;
+            top: 0;
+        }
+    </style>
+
+    <section class="page_head">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="page_title">
+                        <h2>Tickets</h2>
+                    </div>
+                    <nav id="breadcrumbs">
+                        <ul>
+                            <li><a href="index.html">Home</a>/</li>
+                            <li>Tickets</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content about">
+        <div class="container">
+            <div class="row sub_content">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="velocity-tab">
+                        <div class="dividerHeading">
+                            <!--<h4><span>Tabs Content</span></h4>-->
+                        </div>
+                        <div class="col-md-12" id="scrDiv" style="width:1138px; overflow:hidden;">
+                            <div class="leftArrow">
+                                < </div> <div class="rightArrow"> >
+                            </div>
+                            <ul id="toBeScr" class="nav nav-tabs" style="width:2000px; margin-left:0px">
+                                <li class="active"><a href="#1" data-toggle="tab" style="font-weight:900;">Tickets</a>
+                                </li>
+                                <li><a href="#2" data-toggle="tab">Tokens</a></li>
+                                <li><a href="#3" data-toggle="tab">Namma Metro Travel Cards</a>
+                                <li><a href="#4" data-toggle="tab">Combo Cards</a></li>
+                                <li><a href="#5" data-toggle="tab">Stored value Ticket(Varshik)</a></li>
+
+                                <li><a href="#8" data-toggle="tab">Group Ticket</a></li><!-- -->
+                                <li><a href="#9" data-toggle="tab"><strong>Take Sale Outlets</strong></a></li>
+                                <li><a href="#10" data-toggle="tab"><strong>Topping-up Outlets for Smart
+                                            Cards</strong></a></li>
+                                <li><a href="#11" data-toggle="tab"><strong>Auto Top-up for Smart Cards</strong></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <style>
+                            .tenders_Table td {
+                                padding: 8px;
+                            }
+
+                            .tenders_Table td a:hover {
+                                text-decoration: underline;
+                            }
+                        </style>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="1">
+
+
+
+
+                                <h4 class="tab_H2"><strong>TICKET</strong></h4>
+                                <div class="tickets_sec">
+                                    <p>The Ticket media used in Namma Metro is primarily contactless technology. These
+                                        are:</p>
+                                    <ul>
+                                        <li><strong>&nbsp;Tokens (for single journey)</strong></li>
+                                        <li><strong>Contactless Smart Cards (for multiple journeys)</strong></li>
+                                    </ul>
+                                    <p>The electronic chip residing inside the Token or Smart Card contains information
+                                        of a ticket.</p>
+                                </div>
+
+
+
+
+
+
+                                <h4 class="tab_H2"><strong>TOKENS</strong></h4>
+                                <div class="col-md-6">
+                                    <div>
+                                        <div class="col-md-4"> <img src="/AllImages/Gallery/ae9573Gallery.png"
+                                                class="img-responsive" width="250" height="227"> </div>
+                                        <div class="col-md-8">
+                                            <ul>
+                                                <li><strong>Tokens are used as single journey tickets.</strong></li>
+                                                <li><strong>These are captured by gates during exit.</strong></li>
+                                                <li><strong>Suitable for casual travellers</strong></li>
+                                            </ul>
+                                            <p>&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="tab_H2"><strong>CONTACTLESS SMART CARDS</strong></h4>
+                                <div class="col-md-6">
+                                    <div>
+                                        <div class="col-md-4"> <img src="/AllImages/Gallery/20219eGallery.jpg"
+                                                class="img-responsive" width="250" height="227"> </div>
+                                        <div class="col-md-8">
+                                            <h2>Namma Metro Travel Cards</h2>
+                                            <p>Contactless Smart Cards available for Rs50. The travel value is different
+                                                from the cost of card.</p>
+                                            <p>&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-md-12 tickets_Beni_Bg">
+                                    <h4 class="text-center" style="margin:0px;"><strong>BENEFITS OF CONTACTLESS SMART
+                                            CARDS:</strong></h4>
+                                    <div class="col-md-6 padd_5">
+                                        <div class="tickets_Beni_Sub">Load value on card as per your convenience.</div>
+                                    </div>
+                                    <div class="col-md-6 padd_5">
+                                        <div class="tickets_Beni_Sub">Get 15% discount for smart cards, over token fare.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 padd_5">
+                                        <div class="tickets_Beni_Sub">Wide options to top-up value 24 x 7, apart from
+                                            stations</div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-md-12">
+                                    <h4 class="tab_H2" style="text-transform:inherit;margin-top:30px;"><strong>Standard
+                                            Tickets which can be loaded on Smart Cards:</strong></h4>
+                                    <div class="col-md-6">
+                                        <h4 class="tab_H2" style="text-transform:inherit;font-size:15px;margin:0;">
+                                            <strong>Stored Value Ticket (Varshik)</strong></h4>
+                                        <ul>
+                                            <li>
+                                                <p>Smart cards will be used to carry multiple trips</p>
+                                            </li>
+                                            <li>
+                                                <p>The User can load an amount in multiples of Rs.50/- upto a maximum of
+                                                    Rs 3000/- into the Smart Card</p>
+                                            </li>
+                                            <li>
+                                                <p>The stored value in the ticket will be reduced to the range of
+                                                    managed trips.</p>
+                                            </li>
+                                            <li>
+                                                <p>Get 15% discount for smart cards, over token fare.</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane " id="2">
+
+
+
+                                <div class="dividerHeading">
+                                    <h4><span>Tokens</span></h4>
+                                </div>
+                                <!-- <h3>Notice the gap between the content and tab after applying a background color</h3>-->
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <img src="/AllImages/Gallery/f6a321Gallery.png"
+                                            class="img-responsive pull-left">
+                                        <ul class="list_style circle pull-left"
+                                            style="font-size:15px;font-weight:500;margin-top:18px;">
+                                            <ul>
+                                                <li><strong>Tokens are used as single journey tickets.</strong></li>
+                                                <li><strong>These are captured by gates during exit.</strong></li>
+                                                <li><strong>Suitable for casual travellers</strong></li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <ul class="links tocken pull-left" style="font-size:14px;margin-top:18px;">
+                                            <h3>Rules for Tokens:</h3>
+                                            <ul>
+                                                <li>The maximum number of tokens which are to be issued by the Ticket
+                                                    office operator to a single passenger at a time is six.</li>
+                                                <li>The tokens are captured at exit gate on completion of the journey.
+                                                </li>
+                                                <li>Token oPeriod of validity of token:<ol>
+                                                        <li>
+                                                            <p>Any type of token is valid only for the day of purchase.
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>This will be valid for use at the entry gate not more
+                                                                than 30 minutes from the time of sale.</p>
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                                <li>Token Sales Station is the entrance to the travel station</li>
+                                                <li>Overstay Rule: A passenger holding a valid ticket has to exit from
+                                                    paid area of same station within 20 minutes and from paid area of
+                                                    other stations within 120 minutes. For overstaying in paid area
+                                                    beyond these limits, a penalty of Rs.50/- per hour is charged,
+                                                    subject to a maximum of Rs. 100/-.</li>
+                                                <li>
+                                                    <p>If the traveler takes away the token from the exit door without
+                                                        paying the deposit of Rs. 200.00 is penalized.</p>
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane" id="3">
+
+
+
+                                <div class="dividerHeading">
+                                    <h4><span><b>Namma Metro Travel Cards </b></span></h4>
+                                    <div class="col-md-8">
+                                        <h5 style="font-size:15px;margin-top:20px;">Contactless Smart Cards available
+                                            for Rs. 50. The travel value is different from the cost of card.</h5>
+                                        <h3 style="border-radius:5px;margin-bottom:0px;display:table;background:white">
+                                            Benefits of Contactless Smart Cards: </h3>
+                                        <ul class="links tocken pull-left" style="font-size:14px;margin-top:18px;">
+                                            <ul>
+                                                <li>Buy only once and travel without hassle of buying ticket every time
+                                                    you travel.</li>
+                                                <li>Load either value or trips on card as per your convenience.</li>
+                                                <li>Get&nbsp;15% discount for smart card, over token fare.</li>
+                                                <li>Wide options to top-up value 24 X 7, apart from stations.</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4"><img src="/AllImages/Gallery/cc4bdeGallery.jpg"
+                                            style="width:100%;border-radius:5px;"></div>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane" id="4">
+
+
+
+                                <div class="dividerHeading">
+                                    <h4><span><b>Namma Metro Combo Cards </b></span></h4>
+                                    <div class="col-md-8">
+                                        <h5 style="font-size:15px;margin-top:20px;">Combo card is a single card with a
+                                            Contactless chip and a Magstripe for ticketing and banking applications
+                                            respectively issued by partner banks. BMRCL has tied up with Federal Bank
+                                            and ICICI bank for issue of Combo cards.</h5>
+                                        <h3 style="border-radius:5px;margin-bottom:0px;display:table;background:white">
+                                            Benefits of Contactless Smart Cards</h3>
+                                        <ul class="links tocken pull-left" style="font-size:14px;margin-top:18px;">
+                                            <ul>
+                                                <li>Buy only once and travel without hassle of buying ticket every time
+                                                    you travel.</li>
+                                                <li>Load either value or trips on card as per your convenience.</li>
+                                                <li>Get benefit of discount upto 15% over token fares.</li>
+                                                <li>Wide options to top-up value 24 X 7, apart from stations.</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4"><img src="/AllImages/Gallery/14ce20Gallery.jpg"
+                                            style="width:100%;border-radius:5px;"></div>
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="tab-pane" id="5">
+
+
+
+                                <div class="dividerHeading">
+                                    <h4><strong>Stored Value Ticket (Varshik)</strong></h4>
+                                    <ul class="links tocken " style="font-size:14px;margin-top:18px;">
+                                        <ul>
+                                            <li>These are used for performing multiple journeys.</li>
+                                            <li>The user can load an amount in multiples of Rs 50/-&nbsp;upto a maximum
+                                                of Rs 3000/- into the Card.</li>
+                                            <li>The stored value in the ticket decreases to the extent of journey
+                                                performed.</li>
+                                            <li>Get 15% discount for smart card, of the Token fare</li>
+                                        </ul>
+                                    </ul>
+                                    <h6 class="h6_Tab5"></h6>
+                                    <ul class="links tocken " style="font-size:14px;margin-top:18px;">
+                                        <p><span style="font-size:16px"><span style="color:#800080"><strong>Rules for
+                                                        Stored Value Ticket (Varshik):</strong></span></span></p>
+                                        <p><span style="color:#800080"><strong>Topping-up:</strong></span>&nbsp;Currency
+                                            value can be added to Smart Card at&nbsp; any BMRCL Ticket counters.</p>
+                                        <p>Currency value can also be added to Smart Card through BMRCl&nbsp; website
+                                            or&nbsp;Mobile One App or&nbsp;Net banking (selected banks ONLY).</p>
+                                        <p><em>However, after</em><span style="color:#000000"><em>&nbsp;initiating
+                                                    recharge through BMRCL website or Mobile One App or&nbsp;Net banking
+                                                    Smart Card has to be presented to entry side of Automatic Gate (AG)
+                                                    of any BMRCL metro station, <strong>within 60 days</strong>, for the
+                                                    recharge to be credited&nbsp;to the Smart Card. Otherwise the
+                                                    recharge amount lapses.</em></span></p>
+                                        <p><span style="color:#800080"><strong>Remaining value:</strong></span> After
+                                            each journey, the stored value on the card shall get reduced by the amount
+                                            fixed for the journey performed. The balance amount resides in the
+                                            card.&nbsp;</p>
+                                        <p><span style="color:#800080"><strong>Denomination of Stored Value
+                                                    Ticket:</strong></span> The top-up in case of Stored Value ticket
+                                            shall be minimum Rs50 and further in multiples of Rs50. The cost of
+                                            contactless smart card is Rs50 which is different from the stored
+                                            value.&nbsp;</p>
+                                        <p><span style="color:#800080"><strong>Total maximum stored
+                                                    value:</strong></span> Total maximum stored value on a smart card is
+                                            Rs 3000/-. when top-up done at&nbsp;BMRCL metro stations. However, when top
+                                            up is done at other&nbsp;outlets i.e. through BMRCL website &nbsp;or Mobile
+                                            One App or&nbsp;Net banking (Selected banks ONLY), the stored valueis Rs
+                                            2500/-.&nbsp;</p>
+                                        <p><span style="color:#ff0000"><em><strong>NOTE</strong>: After initiating
+                                                    recharge through BMRCL website or Mobile One App or&nbsp;Net banking
+                                                    Smart Card has to be presented to entry side of Automatic Gate (AG)
+                                                    of any BMRCL metro station,<strong> within 60 days</strong>, for the
+                                                    recharge to be created to the Smart Card. Otherwise the recharge
+                                                    amount lapses.</em></span></p>
+                                        <p><strong><span style="color:#800080">Stored Value Travel Discount:</span>
+                                            </strong>Get&nbsp;15% discount for smart card, over token fare. &nbsp;</p>
+                                        <p><span style="color:#800080"><strong>Overstay Rule:</strong></span> A
+                                            passenger holding a valid ticket can exit from paid area of&nbsp;&nbsp;same
+                                            station within 20 minutes and from paid area of other stations within 120
+                                            minutes. For overstaying in paid area beyond these limits, penalty of Rs 50
+                                            per hour is charged subject to a maximum of Rs 100.&nbsp;</p>
+                                        <p><span style="color:#800080"><strong>Minimum Balance on Stored Value ticket
+                                                    for travel:</strong> </span>A passenger will be allowed to enter the
+                                            system even if the smart card has a stored value equal to minimum fare on
+                                            the Metro. The passenger is advised to ensure that he has sufficient balance
+                                            to complete the journey. In case journey is performed for distance for which
+                                            balance amount is not available, the card can be topped up at Customer Care
+                                            to enable exit from gates.&nbsp;</p>
+                                        <p><span style="color:#800080"><strong>Minimum fare charged:</strong> </span>A
+                                            passenger holding Stored Value ticket will be charged minimum fare for exit
+                                            from the same station (if not overstayed).&nbsp;</p>
+                                        <p><span style="color:#800080"><strong>Default ticket in all
+                                                    CSC:</strong></span> Stored Value Ticket is default ticket available
+                                            in all Contactless Smart Cards sold by BMRCL.</p>
+                                    </ul>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="tab-pane" id="8">
+
+
+
+                                <div class="dividerHeading">
+                                    <h4><strong>Group Ticket</strong></h4>
+                                    <p>It is a paper ticket issued at the ticket counter for travel of a &#39;Group&#39;
+                                        of persons (Group is defined as a set of persons with a minimum of 25 passengers
+                                        intending to travel together between the same set of stations). Passengers in
+                                        the Group will be allowed to enter the paid area through &#39;hinged gate&#39;
+                                        after manual verification. The Group ticket is a single journey ticket and will
+                                        be collected at the exit station. This carries a discount of 10% over token
+                                        fare.
+
+                                        * Note: There is no refund for Group Ticket.</p>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane" id="9">
+
+
+                                <div class="dividerHeading">
+                                    <h4><strong>Ticket Sale Outlets</strong></h4>
+                                    <div class="col-md-12"
+                                        style="background:#efefef;border-radius:5px;padding-left:0px;margin:10px;">
+                                        <div class="col-md-4" style="padding-left:0px;"><img
+                                                src="/AllImages/Gallery/3d7e26Gallery.jpg"
+                                                style="margin:5px;border:3px soid #fff;border-radius:5px;"
+                                                class="img-responsive"></div>
+                                        <div class="col-md-8">
+                                            <h6 class="h6_Tab5">Ticket Counters at Stations</h6>
+                                            <ul class="links tocken ">
+
+
+                                                <p>You can purcherse the Tickets mentioned below from the Ticket
+                                                    counters.</p>
+                                                <ul>
+                                                    <li>Tokens</li>
+                                                    <li>Metro Contactless Smart Cards (Travel Cards)</li>
+                                                    <li>Group Tickets.</li>
+                                                </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane" id="10">
+
+
+                                <h4 class="tab_H2"><strong>Topping-up Outlets for Smart Cards</strong></h4>
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <p>
+                                            <strong>At Metro Stations:</strong>
+                                            <br>
+                                            Passengers already holding Smart cards containing Varshik Ticket have
+                                            several options for topping-up stored value.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <strong>Other than Metro Stations:</strong>
+                                            <br>
+                                            Passengers already holding Smart cards containing Varshik Ticket have
+                                            several options for topping-up stored value.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+
+
+                                        <div class="col-md-3">
+                                            <img src="/AllImages/Gallery/9c5999Gallery.jpg" width="119" height="139">
+                                            <h2>
+                                                Ticket Vending Machines (TVM)
+                                            </h2>
+                                            <p>
+                                                .
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img src="/AllImages/Gallery/6ff0ddGallery.jpg" width="119" height="139">
+                                            <h2>
+                                                Ticket Counters at stations
+                                            </h2>
+                                            <p>
+                                                using cash or credit/debit
+                                                card.
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img src="/AllImages/Gallery/7f890fGallery.jpg" width="119" height="139">
+                                            <h2>
+                                                Karnataka Mobile One
+                                            </h2>
+                                            <p>
+                                                Top-up using credit/debit card, netbanking through ‘Karnataka Mobile One
+                                                App’. The Mobile One App is available on Google Play, Apple iStore for
+                                                download. The service can be accessed on app by navigating through
+                                                Transport BMRCL.
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img src="/AllImages/Gallery/109311Gallery.jpg" width="119" height="139">
+                                            <h2>
+                                                Federal Bank ATM, net banking and SMS
+                                            </h2>
+                                            <p>
+                                                The Federal Bank Account Holders can use Federal Bank ATM, netbanking,
+                                                mobile banking and SMS for topping up Varshik ticket on both Metro and
+                                                Combo cards:
+                                            </p>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <style>
+                                    div[class="col-md-3"] {
+                                        text-align: center;
+                                    }
+                                </style>
+
+
+                            </div>
+                            <div class="tab-pane" id="11">
+
+
+
+                                <h4 class="tab_H2"><strong>Auto top-up of Smart Cards</strong></h4>
+                                <div class="col-md-6">
+                                    <div>
+                                        <div class="col-md-8 padd_5">
+                                            <p><strong>Auto Top-up to ICICI Bank debit cards through Standing
+                                                    Instructions.</strong></p>
+                                            <p><strong>Auto top-up:</strong>&nbsp;Passengers need not have to go to the
+                                                Ticket office or any other outlet for topping up Stored Value Ticket
+                                                (Varshik), if they have opted for auto top-up. Automatic Top-up of
+                                                Varshik shall be possible on reaching a pre-defined threshold value set
+                                                by passenger. Minimum Threshold value shall be Rs.100. Top-up value can
+                                                be between Rs.50 to Rs.1000 in multiples of Rs.50</p>
+                                            <p><strong>&bull; Threshold Value:</strong>&nbsp;&nbsp;Minimum Threshold
+                                                value shall be&nbsp;Rs100. Top-up value can be between&nbsp;Rs50
+                                                to&nbsp;Rs1000 in multiples of&nbsp;Rs50.<br />&nbsp;</p>
+                                            <p><strong>&bull; Registration for Auto Top-up:</strong>&nbsp;&nbsp;The
+                                                passenger (account holder of SBI) shall have to register for Auto top-up
+                                                through ATM. The receipt generated at ATM will be presented to the Bank
+                                                home branch where the Standing instructions form will be filled in
+                                                duplicate.<br />&nbsp;</p>
+                                            <p><strong>&bull;&nbsp;Standing instructions:</strong>&nbsp;&nbsp;The
+                                                standing instructions shall be in the form of instructions or mandate
+                                                from the passenger/account holder of the bank to add specified value
+                                                from the account held in the bank as and when the value in the ticket
+                                                goes below the threshold limit set by passenger. When the stored value
+                                                of ticket goes below the threshold, system will initiate a request for a
+                                                top-up transaction for the value as per the mandate given by the
+                                                passenger. The Standing Instructions form will be filled up in duplicate
+                                                and submitted in the bank. The bank will return one authenticated copy
+                                                of this form to the passenger to be used for activation at BMRCL
+                                                customer Care office at stations.&nbsp;<br />&nbsp;</p>
+                                            <p><strong>&bull; Activation of Auto-top up:</strong>&nbsp;&nbsp;The
+                                                authenticated copy of standing instructions will be handed over by
+                                                passenger to Customer Care office at Stations for activation of Auto-top
+                                                up. Before activation the minimum stored value on ticket should
+                                                be&nbsp;Rs50.<br />&nbsp;</p>
+                                            <p><strong>&bull; Auto-top Request Generation:</strong>&nbsp; The auto
+                                                top-up request is generated by the Automatic gates during entry to
+                                                station when the stored value is below threshold. The request for top-up
+                                                is sent to bank but the passenger is allowed to travel based on the
+                                                threshold value still available on the card. The request will not be
+                                                generated if the stored value on ticket is below the minimum fare
+                                                required to enter the stations.<br />&nbsp;</p>
+                                            <p><strong>&bull; Add Value Action:</strong>&nbsp;&nbsp;The add value action
+                                                on CSC happens when the passenger goes through the Automatic Gates next
+                                                time after the request was generated based on response from Bank
+                                                debiting the passenger&rsquo;s account.<br />&nbsp;</p>
+                                            <p><strong>&bull; Dishonor of top-up request to Bank:</strong>&nbsp; In case
+                                                the Bank dishonors the auto top-up request sent by system due to
+                                                insufficient balance held by passenger, the CSC shall not be topped up.
+                                                BMRCL may exercise option to cancel the auto top-up facility in case of
+                                                repeated dishonors of auto top-up request and intimate to the
+                                                Bank.&nbsp;<br />&nbsp;</p>
+                                            <p><strong>&bull; Withdrawal of Standing Instructions:</strong>&nbsp; Such
+                                                standing instructions may be withdrawn by passenger after he presents a
+                                                request at the Customer Care office. The operator shall issue an
+                                                acknowledgement to the passenger for the same after accepting the
+                                                request</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        $(function () {
+            $('.leftArrow').click(function (e) {
+                if ($('#toBeScr').css('margin-left') < 0 + 'px') {
+                    $('#toBeScr').animate({ 'margin-left': '+=150px' });
+                } else if ($('#toBeScr').css('margin-left') > 0 + 'px') {
+                    e.preventDefault();
+                } else {
+                    $('#toBeScr').animate({ 'margin-left': '+=100px' });
+                };
+
+            });
+            $('.rightArrow').click(function (e) {
+                if ($('#toBeScr').css('margin-left') >= 0 + 'px') {
+                    $('#toBeScr').animate({ 'margin-left': '-=150px' });
+                } else if ($('#toBeScr').css('margin-left') > -600 + 'px') {
+                    e.preventDefault();
+                } else {
+                    $('#toBeScr').animate({ 'margin-left': '-=150px' });
+                };
+
+            });
+
+        })
+    </script>
+
+
+
+
+
+
+    <!--start footer-->
+
+    <!--end footer-->
+
+    <section class="footer_bottom">
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="footer_social">
+                                <ul class="footbot_social">
+                                    <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip"
+                                            title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip"
+                                            title="Twitter"><i class="fa fa-twitter"></i></a></li>
+
+                                    <!--<li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+                                    <li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>-->
+                                </ul>
+                            </div>
+                            <ul>
+                                <li>
+                                    <p class="copyright ">| &nbsp;<a
+                                            href="http://www.bmrc.co.in/English/images/Policies.pdf" target="_blank">
+                                            WEBSITE POLICIES</a> &nbsp;|&nbsp; <a
+                                            href="https://kannada.bmrc.co.in/English/rti.html" target="_blank"> RTI
+                                            ACT</a> &nbsp;| &nbsp; <a href="" target="_blank"> FAQ</a> &nbsp;| &nbsp; <a
+                                            href="https://india.gov.in/" target="_blank"> INDIA.GOV.IN
+                                            <!--<img src="images/india_govt_logo.png">--></a></p>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-sm-6 ">
+                            <p class="copyright text-right">
+                                &copy; Copyright 2019 by BMRCL, Powered by <a href="http://www.xiphiastec.com/"
+                                    target="_blank">:: XIPHIAS ::</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/ContentUI/js/bootstrap.min.js"></script>
+    <script src="/ContentUI/js/jquery.easing.1.3.js"></script>
+    <script src="/ContentUI/js/retina-1.1.0.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery.cookie.js"></script> <!-- jQuery cookie -->
+    <script type="text/javascript" src="/ContentUI/js/styleswitch.js"></script> <!-- Style Colors Switcher -->
+    <script src="/ContentUI/js/jquery.fractionslider.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery.smartmenus.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery.smartmenus.bootstrap.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jflickrfeed.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery.easypiechart.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/swipe.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery-hoverdirection.min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="/ContentUI/js/jquery-scrolltofixed-min.js"></script>
+    <script src="/ContentUI/js/main.js"></script>
+
+    <!-- Start Style Switcher -->
+    <!-- End Style Switcher -->
+
+    <script>
+            /*Portfolio*/
+            (function ($) {
+                "use strict";
+                var $container = $('.portfolio'),
+                    $items = $container.find('.portfolio-item'),
+                    portfolioLayout = 'fitRows';
+
+                if ($container.hasClass('portfolio-centered')) {
+                    portfolioLayout = 'masonry';
+                }
+
+                $container.isotope({
+                    filter: '*',
+                    animationEngine: 'best-available',
+                    layoutMode: portfolioLayout,
+                    animationOptions: {
+                        duration: 750,
+                        easing: 'linear',
+                        queue: false
+                    },
+                    masonry: {
+                    }
+                }, refreshWaypoints());
+
+                function refreshWaypoints() {
+                    setTimeout(function () {
+                    }, 1000);
+                }
+
+                $('ul#filter li').on('click', function () {
+                    var selector = $(this).attr('data-filter');
+                    $container.isotope({ filter: selector }, refreshWaypoints());
+                    $('ul#filter li').removeClass('selected');
+                    $(this).addClass('selected');
+                    return false;
+                });
+
+                function getColumnNumber() {
+                    var winWidth = $(window).width(),
+                        columnNumber = 1;
+
+                    if (winWidth > 1200) {
+                        columnNumber = 5;
+                    } else if (winWidth > 950) {
+                        columnNumber = 4;
+                    } else if (winWidth > 600) {
+                        columnNumber = 3;
+                    } else if (winWidth > 400) {
+                        columnNumber = 2;
+                    } else if (winWidth > 250) {
+                        columnNumber = 1;
+                    }
+                    return columnNumber;
+                }
+
+                function setColumns() {
+                    var winWidth = $(window).width(),
+                        columnNumber = getColumnNumber(),
+                        itemWidth = Math.floor(winWidth / columnNumber);
+
+                    $container.find('.portfolio-item').each(function () {
+                        $(this).css({
+                            width: itemWidth + 'px'
+                        });
+                    });
+                }
+
+                function setPortfolio() {
+                    setColumns();
+                    $container.isotope('reLayout');
+                }
+
+                $container.imagesLoaded(function () {
+                    setPortfolio();
+                });
+
+                $(window).on('resize', function () {
+                    setPortfolio();
+                });
+            })(jQuery);
+    </script>
+
+
+    <!-- WARNING: Wow.js doesn't work in IE 9 or less -->
+    <!--[if gte IE 9 | !IE ]><!-->
+    <script type="text/javascript" src="/ContentUI/js/wow.min.js"></script>
+    <script>
+        // WOW Animation
+        new WOW().init();
+    </script>
+    <!--[endif]-->
+
+</body>

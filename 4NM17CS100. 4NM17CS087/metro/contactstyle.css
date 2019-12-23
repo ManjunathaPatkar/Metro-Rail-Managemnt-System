@@ -1,0 +1,59 @@
+html{
+background-image: url(cont.jpg);
+	background-size: cover;
+}
+
+.Contact
+{
+	text-align: center;
+	font-size: 40px;
+	text-align: center;
+}
+
+.header {
+    text-align: center;
+    font-style: oblique;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 75px;
+    overflow: hidden;
+    cursor: pointer;
+	color: black; 
+  text-shadow:
+    -1px -1px 0 #fff,  
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+	margin-bottom: 5px;
+	font-size: 20px;    
+}
+
+.modal {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 5px;
+    color: #333;
+    line-height: 2;
+    max-width: 80%;
+    padding: 1rem 2rem;
+    font-family: 'Mansalva', cursive;
+    
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .modal {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);  
+    }
+.warning {
+    display: none;
+    }
+}  
